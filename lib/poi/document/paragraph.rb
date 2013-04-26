@@ -3,16 +3,15 @@ module POI
   class Paragraphs
     def initialize(document)
       @document = document
-      @poi_document = document
+      @paragraphs = {}
     end
     
     def size
-      @poi_document.get_paragraphs.size
+      @document._paragraphs.size
     end
     
     def [](index)
-      paragraph = @poi_document.paragraph_array(index)
-      Paragraph.new(paragraph, @document)
+      @paragraphs[index] ||= Paragraph.new(@document.paragraph_array(index), @document)
     end
   end
   

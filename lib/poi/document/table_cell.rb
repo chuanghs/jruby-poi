@@ -5,6 +5,7 @@ module POI
       @document = document
       @table = table
       @row = row
+      @cells = {}
     end
     
     def size
@@ -12,7 +13,7 @@ module POI
     end
     
     def [](index)
-      TableCell.new(@document, @table, @row.cell(index))
+      @cells[index] ||= TableCell.new(@document, @table, @row.cell(index))
     end
   end
   

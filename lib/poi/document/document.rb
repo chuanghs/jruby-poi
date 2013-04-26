@@ -36,6 +36,7 @@ module POI
       @docfile
     end
     
+    alias :_paragraphs :paragraphs
     def paragraphs
       @paragraphs ||= Paragraphs.new(self)
     end

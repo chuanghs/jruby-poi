@@ -4,15 +4,15 @@ module POI
     def initialize(document, table)
       @document = document
       @table = table
-      @rows = @table._rows
+      @rows = {}
     end
     
     def size
-      @rows.size
+      @table._rows.size
     end
     
     def [](index)
-      TableRow.new(@document, @table,  @table._rows[index])
+      @rows[index] ||= TableRow.new(@document, @table,  @table._rows[index])
     end
   end
   
