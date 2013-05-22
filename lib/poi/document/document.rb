@@ -6,7 +6,7 @@ module POI
          [File.join(Dir.tmpdir, "worddoc.docx"), filename_or_stream]
        elsif filename_or_stream.kind_of?(IO) || StringIO === filename_or_stream || filename_or_stream.respond_to?(:read)
          # NOTE: The String.unpack hear can be very inefficient on Large files
-         [File.join(Dir.tmpdir, "worddoc.docx"), java.io.ByteArrayInputStream.new(filename_or_steram.read.unpack('c*').to_java(:byte))]
+         [File.join(Dir.tmpdir, "worddoc.docx"), java.io.ByteArrayInputStream.new(filename_or_stream.read.unpack('c*').to_java(:byte))]
        else
          raise Exception, "FileNotFound" unless File.exists?(filename_or_stream)
          [filename_or_stream, java.io.FileInputStream.new(filename_or_stream)]
