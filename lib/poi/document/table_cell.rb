@@ -15,6 +15,14 @@ module POI
     def [](index)
       @cells[index] ||= TableCell.new(@document, @table, @row.cell(index))
     end
+    
+    def each 
+      (0...size).each { |i| yield self[i] }
+    end
+    
+    def each_with_index
+      (0...size).each { |i| yield self[i], i }
+    end
   end
   
   class TableCell < Facade(:poi_cell, org.apache.poi.xwpf.usermodel.XWPFTableCell)
