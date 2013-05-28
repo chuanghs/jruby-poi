@@ -14,6 +14,14 @@ module POI
     def size
       @poi_document.tables.size
     end
+    
+    def each 
+      (0...size).each { |i| yield self[i] }
+    end
+    
+    def each_with_index
+      (0...size).each { |i| yield self[i], i }
+    end
   end
   
   class Table < Facade(:poi_table, org.apache.poi.xwpf.usermodel.XWPFTable)
